@@ -59,7 +59,7 @@ ApplicationWindow {
         onStatusChanged: {
             if (status === Enums.MapStatusReady) {
                 ps.active = true;
-                gl.addGraphic(graphic);
+                //gl.addGraphic(graphic);
             }
         }
         */

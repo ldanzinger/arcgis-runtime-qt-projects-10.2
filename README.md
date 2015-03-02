@@ -3,7 +3,7 @@
 This is a collection of sample projects created with the Qt SDK and the ArcGIS Runtime SDK for Qt.
 
 ## Features
-* [Offline geo-fencing app] (http://github.com)
+* [Offline geo-fencing app] (https://github.com/ldanzinger/RuntimeQtSamples/tree/master/geofence)
 
 ## Instructions
 

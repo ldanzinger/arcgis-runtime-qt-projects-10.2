@@ -70,7 +70,7 @@ ApplicationWindow {
             mode: Enums.AutoPanModeNavigation
             positionSource: PositionSource {
                 id: ps
-                nmeaSource: "qrc:///Resources/campus.txt"
+                //nmeaSource: "qrc:///Resources/campus.txt"
             }
 
 

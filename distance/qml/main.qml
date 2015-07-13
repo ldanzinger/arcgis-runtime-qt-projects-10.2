@@ -67,8 +67,8 @@ ApplicationWindow {
             }
 
             function calculateDistance(simplePolyline) {
-                lengthText.text = "Planar Length: " + simplePolyline.calculateLength2D() + " meters";
-                geodesicLengthText.text = "Geodesic Length: " + simplePolyline.geodesicLength() +  " meters";
+                lengthText.text = "Planar Length: " + Math.round(simplePolyline.calculateLength2D()) + " meters";
+                geodesicLengthText.text = "Geodesic Length: " + Math.round(simplePolyline.geodesicLength()) +  " meters";
             }
         }
 
@@ -101,10 +101,10 @@ ApplicationWindow {
 
         Envelope {
             id: initialExtent
-            xMax:-12518302.273374509
-            xMin:-13368309.843602201
-            yMax:4336880.926204643
-            yMin:3699375.2485338743
+            xMax:-13039662.382656414
+            xMin:-13052943.754943782
+            yMax:4040938.838806205
+            yMin:4030977.809590678
             spatialReference: mainMap.spatialReference
         }
 

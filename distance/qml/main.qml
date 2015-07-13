@@ -36,7 +36,7 @@ ApplicationWindow {
 
         GeodatabaseFeatureServiceTable {
             id: featureServiceTable
-            url: "http://services2.arcgis.com/2B0gmGCMCH3iKkax/arcgis/rest/services/LA_Farmers_Markets/FeatureServer/0"
+            url: "http://sampleserver6.arcgisonline.com/arcgis/rest/services/Sync/WildfireSync/FeatureServer/0"
         }
 
         FeatureLayer {

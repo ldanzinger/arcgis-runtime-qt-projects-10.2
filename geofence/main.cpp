@@ -58,7 +58,10 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain(kOrganizationDomain);
 #endif
     QSettings::setDefaultFormat(kSettingsFormat);
-
+#ifdef Q_OS_WIN
+    // Force usage of OpenGL ES through ANGLE on Windows
+    QCoreApplication::setAttribute(Qt::AA_UseOpenGLES);
+#endif
     // Initialize license
 
 #ifdef kClientId

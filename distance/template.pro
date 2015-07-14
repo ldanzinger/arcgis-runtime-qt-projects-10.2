@@ -17,7 +17,7 @@ mac {
 
 #-------------------------------------------------------------------------------
 
-CONFIG += c++11 arcgis_runtime_qml
+CONFIG += c++11 arcgis_runtime_qml10_2_6
 
 QT += core gui opengl xml network script positioning sensors
 QT += qml quick

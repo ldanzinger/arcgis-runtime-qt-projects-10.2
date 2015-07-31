@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/Resources">
+        <file>AppIcon.png</file>
+        <file>ic_menu_add_dark.png</file>
+        <file>ic_menu_collapsed_dark.png</file>
+        <file>ic_menu_editmap_light_d.png</file>
+        <file>ic_menu_find_light_d.png</file>
+        <file>ic_menu_newmap_light_d.png</file>
+        <file>pin_center_star_blue_d.png</file>
+        <file>pin_star_red_d.png</file>
+        <file>ic_menu_closeclear_light.png</file>
+        <file>ic_menu_directionstool_light.png</file>
+    </qresource>
+</RCC>

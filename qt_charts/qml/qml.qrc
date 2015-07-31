@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/qml">
+        <file>main.qml</file>
+        <file>Infographic.qml</file>
+        <file>Legend.qml</file>
+    </qresource>
+</RCC>

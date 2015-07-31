@@ -3,18 +3,22 @@
 This is a collection of sample projects created with the Qt SDK and the ArcGIS Runtime SDK for Qt.
 
 ## Features
-* [Offline geo-fencing app] (https://github.com/ldanzinger/RuntimeQtSamples/tree/master/geofence)
+* [Offline Geofence] (https://github.com/ldanzinger/RuntimeQtSamples/tree/master/offline_geofence)
+* [Distance From] (https://github.com/ldanzinger/RuntimeQtSamples/tree/master/distance_from)
+* [QML GeoJSON Viewer] (https://github.com/ldanzinger/RuntimeQtSamples/tree/master/qml_geojson_viewer)
+* [Qt Maps and Charts Visualization] (https://github.com/ldanzinger/RuntimeQtSamples/tree/master/qt_charts)
+* [San Diego Brewery Explorer] (https://github.com/ldanzinger/RuntimeQtSamples/tree/master/sd_brewery_explorer)
 
 ## Instructions
 
 1. Fork and then clone the repo or download the .zip file. 
 2. Build/run the projects in Qt Creator
-3. Create a branch and make a Pull Request for any suggested enhancements.
+3. Fork and make a Pull Request for any suggested enhancements.
 
 ## Requirements
 
-* Qt SDK 5.4.x
-* ArcGIS Runtime SDK for Qt 10.2.5
+* Qt SDK 5.4.x || Qt SDK 5.5
+* ArcGIS Runtime SDK for Qt 10.2.6
 * Qt Creator
 
 ## Resources

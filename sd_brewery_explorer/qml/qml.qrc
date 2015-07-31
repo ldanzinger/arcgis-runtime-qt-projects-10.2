@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/qml">
+        <file>main.qml</file>
+        <file>ActionBar.qml</file>
+        <file>TitleBar.qml</file>
+        <file>SearchWindow.qml</file>
+        <file>EditWindow.qml</file>
+        <file>PlanWindow.qml</file>
+        <file>DirectionsWindow.qml</file>
+        <file>MapCallout.qml</file>
+    </qresource>
+</RCC>

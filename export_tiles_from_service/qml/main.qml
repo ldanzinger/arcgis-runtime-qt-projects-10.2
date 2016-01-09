@@ -77,7 +77,6 @@ ApplicationWindow {
 
     ExportTileCacheParameters {
         id: taskParams
-        extent: map.extent
         recompressTileCache: true
         recompressionQuality: 75
     }
@@ -143,6 +142,7 @@ ApplicationWindow {
                 console.log("Estimating size...");
                 taskParams.minLevelOfDetail = minScaleTextBox.text;
                 taskParams.maxLevelOfDetail = maxScaleTextBox.text;
+                taskParams.extent = map.extent;
                 exportTask.estimateTileCacheSize(taskParams);
             } else if (mapServiceInfoStatus === Enums.MapServiceInfoStatusErrored){
                 console.log("Error:", mapServiceInfoError.message);

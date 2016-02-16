@@ -17,12 +17,12 @@ limitations under the License.
 import QtQuick 2.0
 
 Rectangle {
-    width: 310
-    height: 225
+    width: 310 * scaleFactor
+    height: 225 * scaleFactor
     color: "lightgrey"
     radius: 5
     border {
-        width: 1.5
+        width: 1.5 * scaleFactor
         color: "black"
     }
 
@@ -49,12 +49,12 @@ Rectangle {
     }
 
     Column {
-        spacing: 5
+        spacing: 5 * scaleFactor
         anchors {
             left: parent.left
             right: parent.right
             top: parent.top
-            margins: 10
+            margins: 10 * scaleFactor
         }
 
         Text {
@@ -68,12 +68,12 @@ Rectangle {
             text: "Median Household Income (2012)"
             font {
                 family: "sanserif"
-                pointSize: 12
+                pixelSize: 12 * scaleFactor
             }
         }
 
         Row {
-            spacing: 15
+            spacing: 15 * scaleFactor
             Image {
                 anchors.verticalCenter: parent.verticalCenter
                 source: legendImage0
@@ -85,7 +85,7 @@ Rectangle {
         }
 
         Row {
-            spacing: 15
+            spacing: 15 * scaleFactor
             Image {
                 anchors.verticalCenter: parent.verticalCenter
                 source: legendImage1
@@ -97,7 +97,7 @@ Rectangle {
         }
 
         Row {
-            spacing: 15
+            spacing: 15 * scaleFactor
             Image {
                 anchors.verticalCenter: parent.verticalCenter
                 source: legendImage2
@@ -109,7 +109,7 @@ Rectangle {
         }
 
         Row {
-            spacing: 15
+            spacing: 15 * scaleFactor
             Image {
                 anchors.verticalCenter: parent.verticalCenter
                 source: legendImage3
@@ -121,7 +121,7 @@ Rectangle {
         }
 
         Row {
-            spacing: 15
+            spacing: 15 * scaleFactor
             Image {
                 anchors.verticalCenter: parent.verticalCenter
                 source: legendImage4
@@ -133,7 +133,7 @@ Rectangle {
         }
 
         Row {
-            spacing: 15
+            spacing: 15 * scaleFactor
             Image {
                 anchors.verticalCenter: parent.verticalCenter
                 source: legendImage5
@@ -145,7 +145,7 @@ Rectangle {
         }
 
         Row {
-            spacing: 15
+            spacing: 15 * scaleFactor
             Image {
                 anchors.verticalCenter: parent.verticalCenter
                 source: legendImage6
@@ -157,7 +157,7 @@ Rectangle {
         }
 
         Row {
-            spacing: 15
+            spacing: 15 * scaleFactor
             Image {
                 anchors.verticalCenter: parent.verticalCenter
                 source: legendImage7

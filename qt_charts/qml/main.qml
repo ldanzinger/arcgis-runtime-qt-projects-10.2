@@ -16,6 +16,7 @@ limitations under the License.
 import QtQuick 2.3
 import QtQuick.Controls 1.2
 import ArcGIS.Runtime 10.26
+import ArcGIS.Extras 1.0
 
 ApplicationWindow {
     id: appWindow
@@ -44,6 +45,8 @@ ApplicationWindow {
     property real burglary
     property real assault
     property real totalCrime
+
+    property real scaleFactor: System.displayScaleFactor
 
     Component.onCompleted: {
         ArcGISRuntime.doPost = true;
@@ -307,7 +310,7 @@ ApplicationWindow {
             top: parent.top
             bottom: parent.bottom
         }
-        width: 75
+        width: 75 * scaleFactor
 
         border {
             color: "black"
@@ -346,7 +349,7 @@ ApplicationWindow {
             top: parent.top
             bottom: parent.bottom
             right: parent.right
-            margins: 15
+            margins: 15 * scaleFactor
         }
     }
 
@@ -355,7 +358,7 @@ ApplicationWindow {
         anchors {
             left: parent.left
             bottom: parent.bottom
-            margins: 15
+            margins: 15 * scaleFactor
         }
     }
 
@@ -363,7 +366,7 @@ ApplicationWindow {
         anchors.fill: parent
         color: "transparent"
         border {
-            width: 2
+            width: 2 * scaleFactor
             color: "black"
         }
     }

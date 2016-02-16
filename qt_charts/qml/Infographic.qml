@@ -21,13 +21,13 @@ Rectangle {
     color: "transparent"
 
     Column {
-        spacing: 15
+        spacing: 15 * scaleFactor
 
         Column {
             spacing: 0
 
             Row {
-                spacing: 15
+                spacing: 15 * scaleFactor
 
                 Text {
                     text: "Total Population:"
@@ -49,15 +49,15 @@ Rectangle {
 
                 Image {
                     visible: pop2010 > 0
-                    width: 20
-                    height: 25
+                    width: 20 * scaleFactor
+                    height: 25 * scaleFactor
                     source: pop2012 > pop2010 ? "qrc:///Resources/Up.png" : "qrc:///Resources/Down.png"
                 }
             }
 
             Row {
                 Rectangle {
-                    height: 300
+                    height: 300 * scaleFactor
                     width: infoGraphicRect.width
 
                     ChartView {
@@ -99,7 +99,7 @@ Rectangle {
         Column {
             spacing: 0
             Row {
-                spacing: 15
+                spacing: 15 * scaleFactor
 
                 Text {
                     text: "Total Crimes (May 2015):"
@@ -122,7 +122,7 @@ Rectangle {
 
             Row {
                 Rectangle {
-                    height: 300
+                    height: 300 * scaleFactor
                     width: infoGraphicRect.width
 
                     ChartView {

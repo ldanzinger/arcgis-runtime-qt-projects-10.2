@@ -8,6 +8,8 @@ This is a collection of sample projects created with the Qt SDK and the ArcGIS R
 * [QML GeoJSON Viewer] (https://github.com/ldanzinger/RuntimeQtSamples/tree/master/qml_geojson_viewer)
 * [Qt Maps and Charts Visualization] (https://github.com/ldanzinger/RuntimeQtSamples/tree/master/qt_charts)
 * [San Diego Brewery Explorer] (https://github.com/ldanzinger/RuntimeQtSamples/tree/master/sd_brewery_explorer)
+* [QChart.js Visualization](https://github.com/ldanzinger/RuntimeQtSamples/tree/master/charts_js)
+* [Export tiles from service](https://github.com/ldanzinger/RuntimeQtSamples/tree/master/export_tiles_from_service)
 
 ## Instructions
 
@@ -17,7 +19,7 @@ This is a collection of sample projects created with the Qt SDK and the ArcGIS R
 
 ## Requirements
 
-* Qt SDK 5.4.x || Qt SDK 5.5
+* Qt SDK 5.4  or greater
 * ArcGIS Runtime SDK for Qt 10.2.6
 * Qt Creator
 
@@ -32,3 +34,7 @@ Find a bug or want to request a new feature?  Please let me know by submitting a
 ## Contributing
 
 Anyone and everyone is welcome to contribute. 
+
+## Contact
+
+Twitter: @geobadger

@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/Resources">
+        <file>AppIcon.png</file>
+        <file>Down.png</file>
+        <file>Up.png</file>
+    </qresource>
+</RCC>

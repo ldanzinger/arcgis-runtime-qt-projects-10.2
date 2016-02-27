@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/qml">
+        <file>main.qml</file>
+        <file>Infographic.qml</file>
+        <file>Legend.qml</file>
+        <file>QChart.js</file>
+    </qresource>
+</RCC>

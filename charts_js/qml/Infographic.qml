@@ -39,25 +39,15 @@ Rectangle {
 
         pieChartData = [{
                             value: 0,
-                            color: "#F7464A"
-                        }, {
-                            value: 0,
-                            color: "#46BFBD"
-                        }, {
-                            value: 0,
-                            color: "#4D5360"
+                            color: "#4daf4a"
                         },
                         {
                             value: 0,
-                            color: "#FDB45C"
+                            color: "#e41a1c"
                         },
                         {
                             value: 0,
-                            color: "#005d9a"
-                        },
-                        {
-                            value: 0,
-                            color: "#FFCCCC"
+                            color: "#377eb8"
                         }];
     }
 
@@ -129,7 +119,7 @@ Rectangle {
                         width: 200
                         spacing: 10
                         Text {
-                            text: "Population by Race"
+                            text: "Housing Characteristics"
                         }
                         ListView {
                             height: 200
@@ -213,29 +203,17 @@ Rectangle {
         ListModel {
             id: demographicListModel
             ListElement {
-                legendLabel: "White"
-                legendColor: "#F7464A"
+                legendLabel: "Owner Occupied"
+                legendColor: "#4daf4a"
             }
             ListElement {
-                legendLabel: "Black"
-                legendColor: "#46BFBD"
+                legendLabel: "Renter Occupied"
+                legendColor: "#e41a1c"
             }
             ListElement {
-                legendLabel: "Asian"
-                legendColor: "#4D5360"
-            }
-            ListElement {
-                legendLabel: "Hawaiian"
-                legendColor: "#FDB45C"
-            }
-            ListElement {
-                legendLabel: "Hispanic"
-                legendColor: "#005d9a"
-            }
-            ListElement {
-                legendLabel: "Native American"
-                legendColor: "#FFCCCC"
-            }
+                legendLabel: "Vacant"
+                legendColor: "#377eb8"
+            }            
         }
 
         Component {
@@ -255,7 +233,6 @@ Rectangle {
                     Row {
                         anchors.verticalCenter: parent.verticalCenter
                         Text {
-                            //anchors.verticalCenter: parent.verticalCenter
                             text: legendLabel
                         }
                     }

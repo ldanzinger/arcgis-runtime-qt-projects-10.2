@@ -17,8 +17,8 @@ limitations under the License.
 import QtQuick 2.0
 
 Rectangle {
-    width: 310 * scaleFactor
-    height: 225 * scaleFactor
+    width: 250 * scaleFactor
+    height: 235 * scaleFactor
     color: "lightgrey"
     radius: 5
     border {
@@ -116,7 +116,7 @@ Rectangle {
             }
             Text {
                 anchors.verticalCenter: parent.verticalCenter
-                text: legendLabel3
+                text: legendLabel3.substring(0,18)
             }
         }
 

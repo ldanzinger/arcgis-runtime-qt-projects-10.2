@@ -124,26 +124,16 @@ ApplicationWindow {
                         };
 
                         pieChartData = [{
-                                            value: attributes["TotalWhite"],
-                                            color: "#F7464A"
-                                        }, {
-                                            value: attributes["TotalBlack"],
-                                            color: "#46BFBD"
-                                        }, {
-                                            value: attributes["TotalAsian"],
-                                            color: "#4D5360"
+                                            value: attributes["TotalOwnerOcc"],
+                                            color: "#4daf4a"
                                         },
                                         {
-                                            value: attributes["TotalHawnPi"],
-                                            color: "#FDB45C"
+                                            value: attributes["TotalRenterOcc"],
+                                            color: "#e41a1c"
                                         },
                                         {
-                                            value: attributes["TotalHispanic"],
-                                            color: "#005d9a"
-                                        },
-                                        {
-                                            value: attributes["TotalNativeAmer"],
-                                            color: "#FFCCCC"
+                                            value: attributes["TotalVacant"],
+                                            color: "#377eb8"
                                         }];
 
                         infoGraphic.dataUpdated();
@@ -169,16 +159,6 @@ ApplicationWindow {
                     outStatisticFieldName: "TotalPop2010"
                 },
                 OutStatistics {
-                    statisticsType: Enums.StatisticsTypeAverage
-                    onStatisticField: "MED_AGE"
-                    outStatisticFieldName: "AvgAge"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeAverage
-                    onStatisticField: "AVE_FAM_SZ"
-                    outStatisticFieldName: "AvgFamSize"
-                },
-                OutStatistics {
                     statisticsType: Enums.StatisticsTypeSum
                     onStatisticField: "OWNER_OCC"
                     outStatisticFieldName: "TotalOwnerOcc"
@@ -190,33 +170,8 @@ ApplicationWindow {
                 },
                 OutStatistics {
                     statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "WHITE"
-                    outStatisticFieldName: "TotalWhite"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "BLACK"
-                    outStatisticFieldName: "TotalBlack"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "AMERI_ES"
-                    outStatisticFieldName: "TotalNativeAmer"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "ASIAN"
-                    outStatisticFieldName: "TotalAsian"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "HAWN_PI"
-                    outStatisticFieldName: "TotalHawnPi"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "HISPANIC"
-                    outStatisticFieldName: "TotalHispanic"
+                    onStatisticField: "VACANT"
+                    outStatisticFieldName: "TotalVacant"
                 },
                 OutStatistics {
                     statisticsType: Enums.StatisticsTypeSum

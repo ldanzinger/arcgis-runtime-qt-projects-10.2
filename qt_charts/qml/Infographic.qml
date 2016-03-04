@@ -62,7 +62,7 @@ Rectangle {
 
                     ChartView {
                         id: chart
-                        title: "Population by Race"
+                        title: "Housing Characteristics"
                         anchors.fill: parent
                         legend {
                             alignment: Qt.AlignLeft
@@ -73,13 +73,9 @@ Rectangle {
 
                         PieSeries {
                             id: pieSeries
-                            PieSlice { label: "White"; value: white; color: "#F7464A" }
-                            PieSlice { label: "Black"; value: black; color: "#46BFBD" }
-                            PieSlice { label: "Asian"; value: asian; color: "#4D5360" }
-                            PieSlice { label: "Hawaiian"; value: hawaiian; color: "#FDB45C" }
-                            PieSlice { label: "Hispanic"; value: hispanic; color: "#005d9a" }
-                            PieSlice { label: "Native American"; value: nativeAmerican; color: "#FFCCCC" }
-                            PieSlice { label: "Other"; value: pop2012 - (white + black + asian + hawaiian + hispanic + nativeAmerican); color: "#6E256E" }
+                            PieSlice { label: "Owner Occupied"; value: ownerOcc; color: "#4daf4a" }
+                            PieSlice { label: "Renter Occupied"; value: renterOcc; color: "#e41a1c" }
+                            PieSlice { label: "Vacant"; value: vacant; color: "#377eb8" }
 
                             onHovered: {
                                 if (state === true) {

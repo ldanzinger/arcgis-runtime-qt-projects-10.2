@@ -26,16 +26,9 @@ ApplicationWindow {
 
     property real pop2012
     property real pop2010
-    property real medAge
-    property real avgFamilySize
-    property real white
-    property real black
-    property real nativeAmerican
-    property real asian
-    property real hawaiian
-    property real hispanic
     property real ownerOcc
     property real renterOcc
+    property real vacant
     property real arson
     property real rape
     property real grandTheft
@@ -45,11 +38,103 @@ ApplicationWindow {
     property real burglary
     property real assault
     property real totalCrime
-
     property real scaleFactor: System.displayScaleFactor
 
     Component.onCompleted: {
         ArcGISRuntime.doPost = true;
+    }
+
+    QueryTask {
+        id: demoQueryTask
+        url: "https://services1.arcgis.com/e7dVfn25KpfE6dDd/arcgis/rest/services/LACrimeAndDemo/FeatureServer/0"
+
+        onQueryTaskStatusChanged: {
+            if (queryTaskStatus === Enums.QueryTaskStatusCompleted) {
+                for (var i = 0; i < queryResult.graphics.length; ++i) {
+                    var attributes = queryResult.graphics[0].attributes;
+                    addDataToCharts(attributes);
+                }
+            }
+        }
+    }
+
+    Query {
+        id: demoQuery
+        where: "1=1"
+        spatialRelationship: Enums.SpatialRelationshipIntersects
+        outSpatialReference: map.spatialReference
+        outStatistics: [
+            OutStatistics {
+                statisticsType: Enums.StatisticsTypeSum
+                onStatisticField: "POP2012"
+                outStatisticFieldName: "TotalPop2012"
+            },
+            OutStatistics {
+                statisticsType: Enums.StatisticsTypeSum
+                onStatisticField: "POP2010"
+                outStatisticFieldName: "TotalPop2010"
+            },
+            OutStatistics {
+                statisticsType: Enums.StatisticsTypeSum
+                onStatisticField: "OWNER_OCC"
+                outStatisticFieldName: "TotalOwnerOcc"
+            },
+            OutStatistics {
+                statisticsType: Enums.StatisticsTypeSum
+                onStatisticField: "RENTER_OCC"
+                outStatisticFieldName: "TotalRenterOcc"
+            },
+            OutStatistics {
+                statisticsType: Enums.StatisticsTypeSum
+                onStatisticField: "VACANT"
+                outStatisticFieldName: "TotalVacant"
+            },
+            OutStatistics {
+                statisticsType: Enums.StatisticsTypeSum
+                onStatisticField: "Sum_Total_Crime"
+                outStatisticFieldName: "SumTotalCrime"
+            },
+            OutStatistics {
+                statisticsType: Enums.StatisticsTypeSum
+                onStatisticField: "Sum_Theft"
+                outStatisticFieldName: "SumTheft"
+            },
+            OutStatistics {
+                statisticsType: Enums.StatisticsTypeSum
+                onStatisticField: "Sum_Grand_Theft"
+                outStatisticFieldName: "SumGrandTheft"
+            },
+            OutStatistics {
+                statisticsType: Enums.StatisticsTypeSum
+                onStatisticField: "Sum_Burglary"
+                outStatisticFieldName: "SumBurglary"
+            },
+            OutStatistics {
+                statisticsType: Enums.StatisticsTypeSum
+                onStatisticField: "Sum_Arson"
+                outStatisticFieldName: "SumArson"
+            },
+            OutStatistics {
+                statisticsType: Enums.StatisticsTypeSum
+                onStatisticField: "Sum_Rape"
+                outStatisticFieldName: "SumRape"
+            },
+            OutStatistics {
+                statisticsType: Enums.StatisticsTypeSum
+                onStatisticField: "Sum_Robbery"
+                outStatisticFieldName: "SumRobbery"
+            },
+            OutStatistics {
+                statisticsType: Enums.StatisticsTypeSum
+                onStatisticField: "Sum_Criminal_Homicide"
+                outStatisticFieldName: "SumCriminalHomicide"
+            },
+            OutStatistics {
+                statisticsType: Enums.StatisticsTypeSum
+                onStatisticField: "Sum_Assault"
+                outStatisticFieldName: "SumAssault"
+            }
+        ]
     }
 
     Map {
@@ -63,6 +148,22 @@ ApplicationWindow {
         width: appWindow.width * .50
         extent: soCalExtent
         focus: true
+
+        onMouseClicked: {
+            // create the buffer around the mouse click
+            gl.removeAllGraphics();
+            var pt = mouse.mapPoint;
+            var graphic = ArcGISRuntime.createObject("Graphic");
+            var buffer = pt.buffer(5, mile);
+            graphic.geometry = buffer;
+            graphic.symbol = baseSFS;
+            gl.addGraphic(graphic);
+
+            // set the query parameter's geometry to the buffer
+            demoQuery.geometry = buffer;
+            // kick off the async query task
+            demoQueryTask.execute(demoQuery)
+        }
 
         ArcGISTiledMapServiceLayer {
             url: "http://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_Base/MapServer"
@@ -88,9 +189,7 @@ ApplicationWindow {
                     legendView.legendImage5 = legendItems[5].image;
                     legendView.legendLabel5 = legendItems[5].label;
                     legendView.legendImage6 = legendItems[6].image;
-                    legendView.legendLabel6 = legendItems[6].label;
-                    legendView.legendImage7 = legendItems[7].image;
-                    legendView.legendLabel7 = legendItems[7].label;
+                    legendView.legendLabel6 = legendItems[6].label;      
                 }
             }
         }
@@ -113,156 +212,6 @@ ApplicationWindow {
             url: "http://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_Reference/MapServer"
         }
 
-        QueryTask {
-            id: demoQueryTask
-            url: "https://services1.arcgis.com/e7dVfn25KpfE6dDd/arcgis/rest/services/LACrimeAndDemo/FeatureServer/0"
-
-            onQueryTaskStatusChanged: {
-                if (queryTaskStatus === Enums.QueryTaskStatusErrored) {
-                    console.log("query task error");
-                } else if (queryTaskStatus === Enums.QueryTaskStatusCompleted) {
-                    for (var i = 0; i < queryResult.graphics.length; ++i) {
-                        var attributes = queryResult.graphics[0].attributes;
-                        pop2012 = attributes["TotalPop2012"];
-                        pop2010 = attributes["TotalPop2010"];
-                        medAge = attributes["AvgAge"];
-                        avgFamilySize = attributes["AvgFamSize"];
-                        white = attributes["TotalWhite"];
-                        black = attributes["TotalBlack"];
-                        nativeAmerican = attributes["TotalNativeAmer"];
-                        asian = attributes["TotalAsian"];
-                        hawaiian = attributes["TotalHawnPi"];
-                        hispanic = attributes["TotalHispanic"];
-                        ownerOcc = attributes["TotalOwnerOcc"];
-                        renterOcc = attributes["TotalRenterOcc"];
-                        arson = attributes["SumArson"];
-                        rape = attributes["SumRape"];
-                        grandTheft = attributes["SumGrandTheft"];
-                        theft = attributes["SumTheft"];
-                        criminalHomicide = attributes["SumCriminalHomicide"];
-                        robbery = attributes["SumRobbery"];
-                        burglary = attributes["SumBurglary"];
-                        assault = attributes["SumAssault"];
-                        totalCrime = attributes["SumTotalCrime"];
-                    }
-                }
-            }
-        }
-
-        Query {
-            id: demoQuery
-            where: "1=1"
-            spatialRelationship: Enums.SpatialRelationshipIntersects
-            outSpatialReference: map.spatialReference
-            outStatistics: [
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "POP2012"
-                    outStatisticFieldName: "TotalPop2012"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "POP2010"
-                    outStatisticFieldName: "TotalPop2010"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeAverage
-                    onStatisticField: "MED_AGE"
-                    outStatisticFieldName: "AvgAge"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeAverage
-                    onStatisticField: "AVE_FAM_SZ"
-                    outStatisticFieldName: "AvgFamSize"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "OWNER_OCC"
-                    outStatisticFieldName: "TotalOwnerOcc"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "RENTER_OCC"
-                    outStatisticFieldName: "TotalRenterOcc"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "WHITE"
-                    outStatisticFieldName: "TotalWhite"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "BLACK"
-                    outStatisticFieldName: "TotalBlack"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "AMERI_ES"
-                    outStatisticFieldName: "TotalNativeAmer"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "ASIAN"
-                    outStatisticFieldName: "TotalAsian"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "HAWN_PI"
-                    outStatisticFieldName: "TotalHawnPi"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "HISPANIC"
-                    outStatisticFieldName: "TotalHispanic"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "Sum_Total_Crime"
-                    outStatisticFieldName: "SumTotalCrime"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "Sum_Theft"
-                    outStatisticFieldName: "SumTheft"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "Sum_Grand_Theft"
-                    outStatisticFieldName: "SumGrandTheft"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "Sum_Burglary"
-                    outStatisticFieldName: "SumBurglary"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "Sum_Arson"
-                    outStatisticFieldName: "SumArson"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "Sum_Rape"
-                    outStatisticFieldName: "SumRape"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "Sum_Robbery"
-                    outStatisticFieldName: "SumRobbery"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "Sum_Criminal_Homicide"
-                    outStatisticFieldName: "SumCriminalHomicide"
-                },
-                OutStatistics {
-                    statisticsType: Enums.StatisticsTypeSum
-                    onStatisticField: "Sum_Assault"
-                    outStatisticFieldName: "SumAssault"
-                }
-            ]
-        }
-
         Envelope {
             id: soCalExtent
             spatialReference: map.spatialReference
@@ -270,22 +219,7 @@ ApplicationWindow {
             xMin: -13177785.127230378
             yMax: 4047773.105206928
             yMin: 4006265.4979328117
-        }
-
-        onMouseClicked: {
-            // create the buffer
-            gl.removeAllGraphics();
-            var pt = mouse.mapPoint;
-            var graphic = ArcGISRuntime.createObject("Graphic");
-            var buffer = pt.buffer(5, mile);
-            graphic.geometry = buffer;
-            graphic.symbol = baseSFS;
-            gl.addGraphic(graphic);
-
-            // query features within the buffer
-            demoQuery.geometry = buffer;
-            demoQueryTask.execute(demoQuery)
-        }
+        }        
 
         LinearUnit {
             id: mile
@@ -369,6 +303,23 @@ ApplicationWindow {
             width: 2 * scaleFactor
             color: "black"
         }
+    }
+
+    function addDataToCharts(attributes) {
+        pop2012 = attributes["TotalPop2012"];
+        pop2010 = attributes["TotalPop2010"];
+        ownerOcc = attributes["TotalOwnerOcc"];
+        renterOcc = attributes["TotalRenterOcc"];
+        vacant = attributes["TotalVacant"];
+        arson = attributes["SumArson"];
+        rape = attributes["SumRape"];
+        grandTheft = attributes["SumGrandTheft"];
+        theft = attributes["SumTheft"];
+        criminalHomicide = attributes["SumCriminalHomicide"];
+        robbery = attributes["SumRobbery"];
+        burglary = attributes["SumBurglary"];
+        assault = attributes["SumAssault"];
+        totalCrime = attributes["SumTotalCrime"];
     }
 }
 

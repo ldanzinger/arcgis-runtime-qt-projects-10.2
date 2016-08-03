@@ -37,4 +37,4 @@ Anyone and everyone is welcome to contribute.
 
 ## Contact
 
-Twitter: @geobadger
+Twitter: @geo_badger
